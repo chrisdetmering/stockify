@@ -8,7 +8,7 @@ The sections are as follows:
 2) [How often should I make commits?](#2)
 3) [How do I push up to main?](#3) 
 4) [How do I handle when I am ready to make a pull request?](#4)
-5) [What if my code needs to be changes during the review process?](#5)
+5) [What if my code needs to be changed during the review process?](#5)
 6) [What happens after my code has been merged into main?](#6)
 7) [How do I name my branch?](#7)
 8) [How should I format my commit messages?](#8)
