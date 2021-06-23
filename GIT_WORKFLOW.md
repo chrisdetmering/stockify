@@ -30,7 +30,7 @@ The sections are as follows:
 
 ## <a name="4"></a> How do I handle when I am ready to make a pull request?
 * You are going to squash your commits using:
-* git rebase -i HEAD~<insert number of commits to be squashed>
+* git rebase -i HEAD~ insert number of commits to be squashed
 * Then do git force push
 
 ## <a name="5"></a> What if my code needs to be changes during the review process?
