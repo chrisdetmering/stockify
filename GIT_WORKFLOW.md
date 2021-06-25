@@ -81,4 +81,4 @@ Resolves: #123
 
 ## <a name="9"></a> Why am I doing git push --force? 
  You don't have do this if your commit has not be rebased and then merged into main in the remote repo. 
- However, if you are pushing into a branch which has already been rebased into main you need to do a git push --force.
+ However, if you are push from a branch which has already been rebased into main you need to do a git push --force.
