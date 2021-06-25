@@ -12,6 +12,7 @@ The sections are as follows:
 6) [What happens after my code has been merged into main?](#6)
 7) [How do I name my branch?](#7)
 8) [How should I format my commit messages?](#8)
+9) [Why am I doing git push --force?](#9)
 
 
 ## <a name="1"></a> How should I keep my branch up to date with main?
@@ -26,12 +27,12 @@ The sections are as follows:
 * Small frequent commits are a better way of keeping the branch up to date
 
 ## <a name="3"></a> How do I push up to main? 
-* git force push
+* git push --force
 
 ## <a name="4"></a> How do I handle when I am ready to make a pull request?
 * You are going to squash your commits using:
 * git rebase -i HEAD~ insert number of commits to be squashed
-* Then do git force push
+* Then do git push --force 
 
 ## <a name="5"></a> What if my code needs to be changes during the review process?
 * If code needs to be updated
@@ -39,7 +40,7 @@ The sections are as follows:
 * Fix issue 
 * git add . 
 * git commit
-* got force push 
+* git push --force  
   
 ## <a name="6"></a> What happens after my code has been merged into main?
 * Delete remote branch
@@ -78,3 +79,6 @@ like so:
 
 Resolves: #123
 
+## <a name="9"></a> Why am I doing git push --force? 
+ You don't have do this if your commit has not be rebased and then merged into main in the remote repo. 
+ However, if you are pushing into a branch which has already been rebased into main you need to do a git push --force.
