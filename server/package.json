@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server package for guidance request app",
+  "main": "server.js",
+  "scripts": {
+    "client": "npm run watch --prefix ../client",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Software-Development-Mastermind/guidance-request-app.git"
+  },
+  "keywords": [
+    "SDMM",
+    "guidance",
+    "request"
+  ],
+  "author": "Chris Detmering",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Software-Development-Mastermind/guidance-request-app/issues"
+  },
+  "homepage": "https://github.com/Software-Development-Mastermind/guidance-request-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
