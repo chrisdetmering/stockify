@@ -26,7 +26,7 @@ The sections are as follows:
 * Often 
 * Small frequent commits are a better way of keeping the branch up to date
 
-## <a name="3"></a> How do I push up to main? 
+## <a name="3"></a> How do I push up my local branch to my remote branch? 
 * git push --force
 
 ## <a name="4"></a> How do I handle when I am ready to make a pull request?
