@@ -4,7 +4,7 @@
   "description": "An app built to handle students guidence request in SDMM",
   "main": "server.js",
   "scripts": {
-    "client": "npm run watch --prefix ../client",
+    "client": "npm run watch --prefix ./client",
     "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/Software-Development-Mastermind/guidance-request-app#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",

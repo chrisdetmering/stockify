@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-
+import { useHistory } from 'react-router-dom';
 import TestCase from "./TestCase";
 
-export default function GuidanceRequestQuestionnaire() {
+const GuidanceRequestQuestionnaire = ({ logout }) => {
+  const history = useHistory();
+
   const [testCases, setTestCases] = useState([
     { id: 1, order: 0, description: "", expectation: "", actual: "" },
   ]);
 
+  const handleLogout = () => {
+    logout(() => {
+      history.push('/');
+    })
+  }
+
   return (
     <div className="container">
+      <button onClick={handleLogout}>Logout</button>
       <div className="row">
         <div className="col-md-12">
           <div className="form-group">
@@ -63,3 +72,5 @@ export default function GuidanceRequestQuestionnaire() {
     </div>
   );
 }
+
+export default GuidanceRequestQuestionnaire;
