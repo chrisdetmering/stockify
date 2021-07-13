@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import "./App.css";
-import GuidanceRequestQuestionnaire from "./components/GuidanceRequestQuestionnaire";
-import HomeContainer from "./components/HomeContainer";
-import { Login } from './components/login/Login.jsx';
-import { Register } from './components/register/Register.jsx';
+import Stock from "./components/stocks/Stock";
+import Home from "./components/home/Home";
+import { Login } from './components/login/Login';
+import { Register } from './components/register/Register';
 import { NotFound404 } from './components/notfound/NotFound404';
 import { PrivateRoute } from './components/auth/PrivateRoute';
 
@@ -71,10 +71,10 @@ function App() {
             <Register login={login} />
           </Route>
           <PrivateRoute exact path="/home" isAuth={isAuth} >
-            <HomeContainer logout={logout} />
+            <Home logout={logout} />
           </PrivateRoute>
-          <PrivateRoute exact path="/project-question" isAuth={isAuth}>
-            <GuidanceRequestQuestionnaire logout={logout} />
+          <PrivateRoute exact path="/stock" isAuth={isAuth}>
+            <Stock logout={logout} />
           </PrivateRoute>
           <Route path="*">
             <NotFound404 />
