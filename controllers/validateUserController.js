@@ -5,7 +5,6 @@ module.exports = async (request, response) => {
 
     try {
         const isValid = await isValidUser(body.sessionToken)
-        console.log(isValid)
         if (isValid) {
             response.status(200).send({ message: 'loggedIn' })
         }
