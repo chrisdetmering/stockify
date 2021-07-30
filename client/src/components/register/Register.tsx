@@ -13,7 +13,7 @@ export const Register = ({ login }) => {
     const [isValidPassword, setIsValidPassword] = useState(false)
 
 
-    const handleSignUp = () => {
+    const handleSignUp = (): void => {
         if (isValidEmail && isValidPassword) {
             const body = JSON.stringify({ email, password })
             fetch('/api/auth/register', {
@@ -40,15 +40,15 @@ export const Register = ({ login }) => {
         }
     }
 
-    const handleEmailChange = e => {
+    const handleEmailChange = (e: any): void => {
         const value = e.target.value
         handleEmailValidation(value)
         setEmail(value)
     }
 
-    const inludeAtAndPeriod = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    const inludeAtAndPeriod = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
-    const handleEmailValidation = email => {
+    const handleEmailValidation = (email: string): void => {
         let valid = false;
         if (email === '') {
             setEmailError('email can\'t be blank')
@@ -61,13 +61,13 @@ export const Register = ({ login }) => {
         setIsValidEmail(valid)
     }
 
-    const handlePasswordChange = e => {
+    const handlePasswordChange = (e: any): void => {
         const value = e.target.value
         validatePassword(value)
         setPassword(value)
     }
 
-    const validatePassword = pw => {
+    const validatePassword = (pw: string): void => {
         let valid = false
         if (pw === '') {
             setPasswordError('password can\'t be blank')
@@ -88,25 +88,26 @@ export const Register = ({ login }) => {
 
     return (<>
         <div>
-            <h1>SignUp</h1>
-            <label>Email</label>
-            <br />
+            <h1>SignUp </h1>
+            < label > Email </label>
+            < br />
             <input type="email" onChange={handleEmailChange} value={email} />
             <br />
-            {<span className="register__span-color-red">{emailError}</span>}
-            <br />
-            <label>Password</label>
-            <br />
+            {<span className="register__span-color-red" > {emailError} </span>}
+            < br />
+            <label>Password </label>
+            < br />
             <input type="password" onChange={handlePasswordChange} value={password} />
             <br />
-            {<span className="register__span-color-red">{passwordError}</span>}
-            <br />
+            {<span className="register__span-color-red" > {passwordError} </span>}
+            < br />
             <button
                 disabled={!(isValidPassword && isValidEmail)}
                 onClick={handleSignUp}
-            >Sign Up</button>
-            <br />
-            <Link to="/">Already have an account?</Link>
+            > Sign Up </button>
+            < br />
+            <Link to="/" > Already have an account ? </Link>
         </div>
     </>)
+
 }
