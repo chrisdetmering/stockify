@@ -22,18 +22,9 @@ const getUserIdFromToken = (token) => {
     return [id, error];
 }
 
-const isMatchingPassword = (password, hash) => {
-    let error;
-    let match;
-    bcrypt.compare(password, hash, function (err, result) {
-        if (err) {
-            error = err;
-        } else {
-            match = result;
-        }
-    });
-
-    return [match, error];
+const isMatchingPassword = async (password, hash) => {
+    const match = await bcrypt.compare(password, hash);
+    return match;
 }
 
 

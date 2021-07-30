@@ -9,9 +9,9 @@ const loginUser = async (email, password) => {
         error.status = 404;
         throw error;
     }
-    const isMatching = isMatchingPassword(password, user.password);
+    const isMatching = await isMatchingPassword(password, user.password);
 
-    if (!user || !isMatching) {
+    if (!isMatching) {
         const error = new Error("Either user does not exist or password does not match");
         error.status = 403;
         throw error;
