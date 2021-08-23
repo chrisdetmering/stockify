@@ -1,20 +1,53 @@
 import { useState } from 'react'
 import { Link, useHistory } from "react-router-dom"
-import './Register.css'
+import './Register.css';
 
 export const Register = ({ login }) => {
     const history = useHistory();
 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-    const [isValidEmail, setIsValidEmail] = useState(false)
-    const [isValidPassword, setIsValidPassword] = useState(false)
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [formError, setFormError] = useState('');
+    const [isValidEmail, setIsValidEmail] = useState(false);
+    const [isValidPassword, setIsValidPassword] = useState(false);
+
+    const isFormFilled = (): boolean => {
+        if (firstName === '') {
+            setFormError("First name can't be blank")
+            return false;
+        }
+
+        if (lastName === '') {
+            setFormError("Last name can't be blank")
+            return false
+        }
+
+        if (!isValidEmail) {
+            setFormError(emailError)
+            return false
+        }
+
+        if (username === '') {
+            setFormError("Username can't be blank")
+            return false
+        }
+
+        if (!isValidPassword) {
+            setFormError(passwordError)
+            return false
+        }
+
+        return true
+    }
 
 
     const handleSignUp = (): void => {
-        if (isValidEmail && isValidPassword) {
+        if (isFormFilled()) {
             const body = JSON.stringify({ email, password })
             fetch('/api/auth/register', {
                 method: 'post',
@@ -25,7 +58,7 @@ export const Register = ({ login }) => {
             }).then(response => response.json())
                 .then(data => {
                     if (data.errorMessage) {
-                        setEmailError(data.errorMessage)
+                        setFormError(data.errorMessage)
                     } else {
                         login(() => {
                             localStorage.setItem('session_token', data.session_token);
@@ -44,6 +77,21 @@ export const Register = ({ login }) => {
         const value = e.target.value
         handleEmailValidation(value)
         setEmail(value)
+    }
+
+    const handleFirstNameChange = (e: any): void => {
+        const value = e.target.value;
+        setFirstName(value);
+    }
+
+    const handleLastNameChange = (e: any): void => {
+        const value = e.target.value;
+        setLastName(value);
+    }
+
+    const handleUsernameChange = (e: any): void => {
+        const value = e.target.value;
+        setUsername(value);
     }
 
     const inludeAtAndPeriod = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -89,23 +137,34 @@ export const Register = ({ login }) => {
     return (<>
         <div>
             <h1>SignUp </h1>
-            < label > Email </label>
-            < br />
+            <label> First Name </label>
+            <br />
+            <input type="text" onChange={handleFirstNameChange} value={firstName} />
+            <br />
+
+            <label> Last Name </label>
+            <br />
+            <input type="text" onChange={handleLastNameChange} value={lastName} />
+            <br />
+
+            <label> Email </label>
+            <br />
             <input type="email" onChange={handleEmailChange} value={email} />
             <br />
-            {<span className="register__span-color-red" > {emailError} </span>}
-            < br />
+
+            <label> Username </label>
+            <br />
+            <input type="text" onChange={handleUsernameChange} value={username} />
+            <br />
+
             <label>Password </label>
-            < br />
+            <br />
             <input type="password" onChange={handlePasswordChange} value={password} />
             <br />
-            {<span className="register__span-color-red" > {passwordError} </span>}
-            < br />
-            <button
-                disabled={!(isValidPassword && isValidEmail)}
-                onClick={handleSignUp}
-            > Sign Up </button>
-            < br />
+            {<span>{formError}</span>}
+            <br />
+            <button onClick={handleSignUp}> Sign Up </button>
+            <br />
             <Link to="/" > Already have an account ? </Link>
         </div>
     </>)
