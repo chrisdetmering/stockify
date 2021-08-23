@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import "./App.css";
 import Stock from "./components/stocks/Stock";
 import Home from "./components/home/Home";
 import { Login } from './components/login/Login';
-import { Register } from './components/register/Register.tsx';
+import { Register } from './components/register/Register';
 import { NotFound404 } from './components/notfound/NotFound404';
 import { PrivateRoute } from './components/auth/PrivateRoute';
 
 function App() {
+  const location = useLocation();
   const history = useHistory();
   const [isAuth, setIsAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  //Maybe clean this up? 
   useEffect(() => {
     const sessionToken = localStorage.getItem('session_token');
     if (Boolean(sessionToken)) {
@@ -34,7 +34,7 @@ function App() {
           })
         } else {
           login(() => {
-            history.push('/home')
+            history.push(location.pathname)
           })
         }
 
@@ -44,20 +44,19 @@ function App() {
     }
   }, [])
 
-  const login = cb => {
+  const login = (cb: { (): void; (): void; }) => {
     setIsAuth(true);
     cb()
   }
 
-  const logout = cb => {
+  const logout = (cb: { (): void; (): void; }) => {
     setIsAuth(false);
     localStorage.clear();
     cb()
   }
 
-  //TODO update to spinner
   if (isLoading) {
-    return <div>LOADING....</div>
+    return <div></div>
   }
 
   return (

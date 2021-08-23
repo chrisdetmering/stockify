@@ -12,7 +12,7 @@ export const Login = ({ login }) => {
     const [isValidEmail, setIsValidEmail] = useState(false)
     const [isValidPassword, setIsValidPassword] = useState(false)
 
-    const handleLogin = () => {
+    const handleLogin = (): void => {
         if (isValidEmail && isValidPassword) {
             const body = JSON.stringify({ email, password })
             fetch('/api/auth/login', {
@@ -41,15 +41,15 @@ export const Login = ({ login }) => {
 
 
 
-    const handleEmailChange = e => {
+    const handleEmailChange = (e: { target: { value: any; }; }) => {
         const value = e.target.value
         handleEmailValidation(value)
         setEmail(value)
     }
 
-    const inludeAtAndPeriod = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    const inludeAtAndPeriod = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
-    const handleEmailValidation = email => {
+    const handleEmailValidation = (email: string): void => {
         let valid = false;
         if (email === '') {
             setEmailError('email can\'t be blank')
@@ -62,13 +62,13 @@ export const Login = ({ login }) => {
         setIsValidEmail(valid)
     }
 
-    const handlePasswordChange = e => {
+    const handlePasswordChange = (e: { target: { value: any; }; }) => {
         const value = e.target.value
         validatePassword(value)
         setPassword(value)
     }
 
-    const validatePassword = pw => {
+    const validatePassword = (pw: string): void => {
         let valid = false
         if (pw === '') {
             setPasswordError('password can\'t be blank')
