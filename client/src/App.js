@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import "./App.css";
-import Stock from "./components/stocks/Stock";
-import Home from "./components/home/Home";
-import { Login } from './components/login/Login';
-import { Register } from './components/register/Register';
-import { NotFound404 } from './components/notfound/NotFound404';
-import { PrivateRoute } from './components/auth/PrivateRoute';
+import Stock from "./components/stocks/Stock.tsx";
+import Home from "./components/home/Home.tsx";
+import { Login } from './components/login/Login.tsx';
+import { Register } from './components/register/Register.tsx';
+import { NotFound404 } from './components/notfound/NotFound404.tsx';
+import { PrivateRoute } from './components/auth/PrivateRoute.tsx';
 
 function App() {
   const location = useLocation();
