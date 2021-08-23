@@ -1,6 +1,7 @@
 const { isValidUser } = require('../services/validateUserService');
+import { Request, Response } from 'express';
 
-module.exports = async (request, response) => {
+export default async (request: Request, response: Response) => {
     const { body } = request;
 
     try {

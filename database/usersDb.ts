@@ -1,21 +1,21 @@
 const pool = require('./dbPoolService').getPool();
 const { hashPassword } = require('../utils/auth');
 
-const getUserByEmail = async email => {
+export const getUserByEmail = async (email: string) => {
     const dbResponse = await pool.query(
         `SELECT * FROM users WHERE email = $1`,
         [email]);
     return dbResponse.rows[0];
 }
 
-const getUserById = async id => {
+export const getUserById = async (id: string) => {
     const dbResponse = await pool.query(
         `SELECT * FROM users WHERE id = $1`,
         [id]);
     return dbResponse.rows[0];
 }
 
-const createUser = async (email, password) => {
+export const createUser = async (email: string, password: string) => {
     const hashedPassword = hashPassword(password, 10);
 
     const dbReponse = await pool.query(
@@ -24,12 +24,4 @@ const createUser = async (email, password) => {
         [email, hashedPassword]
     )
     return dbReponse.rows[0];
-}
-
-
-
-module.exports = {
-    getUserByEmail,
-    createUser,
-    getUserById
 }
